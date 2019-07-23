@@ -54,11 +54,11 @@ class Scatter : public FastVector<SlotEntry> {
   Scatter() {}
 
   /// Construct from gaussian factor graph, with optional (partial or complete) ordering
-  Scatter(const GaussianFactorGraph& gfg,
+  GTSAM_EXPORT Scatter(const GaussianFactorGraph& gfg,
           boost::optional<const Ordering&> ordering = boost::none);
 
   /// Add a key/dim pair
-  void add(Key key, size_t dim);
+  GTSAM_EXPORT void add(Key key, size_t dim);
 
  private:
 

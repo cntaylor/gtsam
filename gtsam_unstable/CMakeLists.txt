@@ -90,7 +90,7 @@ if(WIN32) # Add 'lib' prefix to static library to avoid filename collision with 
 		set_target_properties(gtsam_unstable PROPERTIES
 			PREFIX "lib"
 			COMPILE_DEFINITIONS GTSAM_UNSTABLE_IMPORT_STATIC)
-	else()
+    else()
 		set_target_properties(gtsam_unstable PROPERTIES
 			PREFIX ""
 			DEFINE_SYMBOL GTSAM_UNSTABLE_EXPORTS
