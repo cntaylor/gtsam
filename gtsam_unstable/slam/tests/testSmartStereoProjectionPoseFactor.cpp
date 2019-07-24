@@ -1443,13 +1443,15 @@ TEST( SmartStereoProjectionPoseFactor, HessianWithRotationNonDegenerate ) {
       smartFactor->linearize(tranValues);
 
   // Hessian is invariant to rotations and translations in the degenerate case
+#ifdef GTSAM_USE_EIGEN_MKL
+  double thresh = 1e-5;
+#else
+  double thresh = 1e-6;
+#endif
   EXPECT(
       assert_equal(hessianFactor->information(),
-#ifdef GTSAM_USE_EIGEN_MKL
-          hessianFactorRotTran->information(), 1e-5));
-#else
-          hessianFactorRotTran->information(), 1e-6));
-#endif
+          hessianFactorRotTran->information(), thresh));
+
 }
 
 /* ************************************************************************* */

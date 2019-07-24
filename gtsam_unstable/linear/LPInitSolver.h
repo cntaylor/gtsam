@@ -22,6 +22,7 @@
 #include <gtsam_unstable/linear/LP.h>
 #include <gtsam/linear/GaussianFactorGraph.h>
 #include <CppUnitLite/Test.h>
+#include <gtsam_unstable/dllexport.h>
 
 namespace gtsam {
 /**
@@ -50,7 +51,7 @@ namespace gtsam {
  * inequality constraint, we can't conclude that the problem is infeasible.
  * However, whether it is infeasible or unbounded, we don't have a unique solution anyway.
  */
-class LPInitSolver {
+class GTSAM_UNSTABLE_EXPORT LPInitSolver {
 private:
   const LP& lp_;
 

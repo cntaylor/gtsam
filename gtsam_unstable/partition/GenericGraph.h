@@ -13,6 +13,7 @@
 #include <vector>
 #include <stdexcept>
 #include <boost/shared_ptr.hpp>
+#include <gtsam_unstable/dllexport.h>
 
 #include "PartitionWorkSpace.h"
 
@@ -48,7 +49,7 @@ namespace gtsam { namespace partition {
   typedef std::vector<sharedGenericFactor2D> GenericGraph2D;
 
   /** merge nodes in DSF using constraints captured by the given graph */
-  std::list<std::vector<size_t> > findIslands(const GenericGraph2D& graph, const std::vector<size_t>& keys, WorkSpace& workspace,
+  GTSAM_UNSTABLE_EXPORT std::list<std::vector<size_t> > findIslands(const GenericGraph2D& graph, const std::vector<size_t>& keys, WorkSpace& workspace,
       const int minNrConstraintsPerCamera, const int minNrConstraintsPerLandmark);
 
   /** eliminate the sensors from generic graph */
@@ -62,7 +63,7 @@ namespace gtsam { namespace partition {
       WorkSpace& workspace, const int minNrConstraintsPerCamera, const int minNrConstraintsPerLandmark) {  return; }
 
   /** print the graph **/
-  void print(const GenericGraph2D& graph, const std::string name = "GenericGraph2D");
+  GTSAM_UNSTABLE_EXPORT void print(const GenericGraph2D& graph, const std::string name = "GenericGraph2D");
 
   /***************************************************
    * 3D generic factors and their factor graph
@@ -96,20 +97,20 @@ namespace gtsam { namespace partition {
   typedef std::vector<sharedGenericFactor3D> GenericGraph3D;
 
   /** merge nodes in DSF using constraints captured by the given graph */
-  std::list<std::vector<size_t> > findIslands(const GenericGraph3D& graph, const std::vector<size_t>& keys, WorkSpace& workspace,
+  GTSAM_UNSTABLE_EXPORT std::list<std::vector<size_t> > findIslands(const GenericGraph3D& graph, const std::vector<size_t>& keys, WorkSpace& workspace,
       const size_t minNrConstraintsPerCamera, const size_t minNrConstraintsPerLandmark);
 
   /** eliminate the sensors from generic graph */
-  void reduceGenericGraph(const GenericGraph3D& graph, const std::vector<size_t>& cameraKeys,  const std::vector<size_t>& landmarkKeys,
+  GTSAM_UNSTABLE_EXPORT void reduceGenericGraph(const GenericGraph3D& graph, const std::vector<size_t>& cameraKeys,  const std::vector<size_t>& landmarkKeys,
       const std::vector<int>& dictionary,  GenericGraph3D& reducedGraph);
 
   /** check whether the 3D graph is singular (under constrained) */
-  void checkSingularity(const GenericGraph3D& graph, const std::vector<size_t>& frontals,
+  GTSAM_UNSTABLE_EXPORT void checkSingularity(const GenericGraph3D& graph, const std::vector<size_t>& frontals,
       WorkSpace& workspace, const size_t minNrConstraintsPerCamera, const size_t minNrConstraintsPerLandmark);
 
 
   /** print the graph **/
-  void print(const GenericGraph3D& graph, const std::string name = "GenericGraph3D");
+  GTSAM_UNSTABLE_EXPORT void print(const GenericGraph3D& graph, const std::string name = "GenericGraph3D");
 
   /***************************************************
    * unary generic factors and their factor graph

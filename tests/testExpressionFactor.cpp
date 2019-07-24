@@ -190,7 +190,12 @@ TEST(ExpressionFactor, Binary) {
   size_t size = binary.traceSize();
   // Use Variable Length Array, allocated on stack by gcc
   // Note unclear for Clang: http://clang.llvm.org/compatibility.html#vla
+  // For MSVC, need to use malloc
+#ifdef _MSC_VER
+  auto traceStorage = static_cast<internal::ExecutionTraceStorage*>(_aligned_malloc(size, internal::TraceAlignment));
+#else
   internal::ExecutionTraceStorage traceStorage[size];
+#endif
   internal::ExecutionTrace<Point2> trace;
   Point2 value = binary.traceExecution(values, trace, traceStorage);
   EXPECT(assert_equal(Point2(0,0),value, 1e-9));
@@ -207,6 +212,9 @@ TEST(ExpressionFactor, Binary) {
   CHECK(r);
   EXPECT(assert_equal(expected25, (Matrix ) (*r)->dTdA1, 1e-9));
   EXPECT(assert_equal(expected22, (Matrix ) (*r)->dTdA2, 1e-9));
+#ifdef _MSC_VER
+  _aligned_free(traceStorage);
+#endif
 }
 /* ************************************************************************* */
 // Unary(Binary(Leaf,Leaf))
@@ -244,7 +252,11 @@ TEST(ExpressionFactor, Shallow) {
   // traceExecution of shallow tree
   typedef internal::UnaryExpression<Point2, Point3> Unary;
   size_t size = expression.traceSize();
+#ifdef _MSC_VER
+  auto traceStorage = static_cast<internal::ExecutionTraceStorage*>(_aligned_malloc(size, internal::TraceAlignment));
+#else
   internal::ExecutionTraceStorage traceStorage[size];
+#endif
   internal::ExecutionTrace<Point2> trace;
   Point2 value = expression.traceExecution(values, trace, traceStorage);
   EXPECT(assert_equal(Point2(0,0),value, 1e-9));
@@ -265,6 +277,9 @@ TEST(ExpressionFactor, Shallow) {
   EXPECT_LONGS_EQUAL(2, f2.dim());
   boost::shared_ptr<GaussianFactor> gf2 = f2.linearize(values);
   EXPECT( assert_equal(*expected, *gf2, 1e-9));
+#ifdef _MSC_VER
+  _aligned_free(traceStorage);
+#endif
 }
 
 /* ************************************************************************* */

@@ -83,7 +83,7 @@ public:
 /**
  * Base class for Iterative Solvers like SubgraphSolver
  */
-class IterativeSolver {
+class GTSAM_EXPORT IterativeSolver {
 public:
   typedef boost::shared_ptr<IterativeSolver> shared_ptr;
   IterativeSolver() {
@@ -92,12 +92,12 @@ public:
   }
 
   /* interface to the nonlinear optimizer, without metadata, damping and initial estimate */
-  GTSAM_EXPORT VectorValues optimize(const GaussianFactorGraph &gfg,
+  VectorValues optimize(const GaussianFactorGraph &gfg,
       boost::optional<const KeyInfo&> = boost::none,
       boost::optional<const std::map<Key, Vector>&> lambda = boost::none);
 
   /* interface to the nonlinear optimizer, without initial estimate */
-  GTSAM_EXPORT VectorValues optimize(const GaussianFactorGraph &gfg, const KeyInfo &keyInfo,
+  VectorValues optimize(const GaussianFactorGraph &gfg, const KeyInfo &keyInfo,
       const std::map<Key, Vector> &lambda);
 
   /* interface to the nonlinear optimizer that the subclasses have to implement */

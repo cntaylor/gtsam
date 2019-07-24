@@ -20,10 +20,11 @@
 
 #include <gtsam_unstable/linear/QP.h>
 #include <fstream>
+#include <gtsam_unstable/dllexport.h>
 
 namespace gtsam {
 
-class QPSParser {
+class GTSAM_UNSTABLE_EXPORT QPSParser {
 
 private:
   std::string fileName_;

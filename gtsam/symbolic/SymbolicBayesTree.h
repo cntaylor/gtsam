@@ -30,7 +30,7 @@ namespace gtsam {
 
   /* ************************************************************************* */
   /// A clique in a SymbolicBayesTree
-  class SymbolicBayesTreeClique :
+  class GTSAM_EXPORT SymbolicBayesTreeClique :
     public BayesTreeCliqueBase<SymbolicBayesTreeClique, SymbolicFactorGraph>
   {
   public:
