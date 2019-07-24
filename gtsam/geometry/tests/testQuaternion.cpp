@@ -82,9 +82,10 @@ TEST(Quaternion , Compose) {
 
 //******************************************************************************
 Vector3 Q_z_axis(0, 0, 1);
-Q id(Eigen::AngleAxisd(0, Q_z_axis));
-Q R1(Eigen::AngleAxisd(1, Q_z_axis));
-Q R2(Eigen::AngleAxisd(2, Vector3(0, 1, 0)));
+//_tq = testQuaternion (to separate from testSO3, others when TEST_SINGLE_EXE turned on)
+Q id_tq(Eigen::AngleAxisd(0, Q_z_axis));
+Q R1_tq(Eigen::AngleAxisd(1, Q_z_axis));
+Q R2_tq(Eigen::AngleAxisd(2, Vector3(0, 1, 0)));
 
 //******************************************************************************
 TEST(Quaternion , Between) {
@@ -109,31 +110,31 @@ TEST(Quaternion , Inverse) {
 
 //******************************************************************************
 TEST(Quaternion , Invariants) {
-  EXPECT(check_group_invariants(id, id));
-  EXPECT(check_group_invariants(id, R1));
-  EXPECT(check_group_invariants(R2, id));
-  EXPECT(check_group_invariants(R2, R1));
+  EXPECT(check_group_invariants(id_tq, id_tq));
+  EXPECT(check_group_invariants(id_tq, R1_tq));
+  EXPECT(check_group_invariants(R2_tq, id_tq));
+  EXPECT(check_group_invariants(R2_tq, R1_tq));
 
-  EXPECT(check_manifold_invariants(id, id));
-  EXPECT(check_manifold_invariants(id, R1));
-  EXPECT(check_manifold_invariants(R2, id));
-  EXPECT(check_manifold_invariants(R2, R1));
+  EXPECT(check_manifold_invariants(id_tq, id_tq));
+  EXPECT(check_manifold_invariants(id_tq, R1_tq));
+  EXPECT(check_manifold_invariants(R2_tq, id_tq));
+  EXPECT(check_manifold_invariants(R2_tq, R1_tq));
 }
 
 //******************************************************************************
 TEST(Quaternion , LieGroupDerivatives) {
-  CHECK_LIE_GROUP_DERIVATIVES(id, id);
-  CHECK_LIE_GROUP_DERIVATIVES(id, R2);
-  CHECK_LIE_GROUP_DERIVATIVES(R2, id);
-  CHECK_LIE_GROUP_DERIVATIVES(R2, R1);
+  CHECK_LIE_GROUP_DERIVATIVES(id_tq, id_tq);
+  CHECK_LIE_GROUP_DERIVATIVES(id_tq, R2_tq);
+  CHECK_LIE_GROUP_DERIVATIVES(R2_tq, id_tq);
+  CHECK_LIE_GROUP_DERIVATIVES(R2_tq, R1_tq);
 }
 
 //******************************************************************************
 TEST(Quaternion , ChartDerivatives) {
-  CHECK_CHART_DERIVATIVES(id, id);
-  CHECK_CHART_DERIVATIVES(id, R2);
-  CHECK_CHART_DERIVATIVES(R2, id);
-  CHECK_CHART_DERIVATIVES(R2, R1);
+  CHECK_CHART_DERIVATIVES(id_tq, id_tq);
+  CHECK_CHART_DERIVATIVES(id_tq, R2_tq);
+  CHECK_CHART_DERIVATIVES(R2_tq, id_tq);
+  CHECK_CHART_DERIVATIVES(R2_tq, R1_tq);
 }
 
 //******************************************************************************

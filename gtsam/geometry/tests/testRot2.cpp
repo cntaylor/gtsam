@@ -156,22 +156,23 @@ TEST( Rot2, relativeBearing )
 }
 
 //******************************************************************************
-Rot2 T1(0.1);
-Rot2 T2(0.2);
+//_tr2 = testRot2.cpp
+Rot2 T1_tr2(0.1);
+Rot2 T2_tr2(0.2);
 
 //******************************************************************************
 TEST(Rot2 , Invariants) {
   Rot2 id;
 
   EXPECT(check_group_invariants(id,id));
-  EXPECT(check_group_invariants(id,T1));
-  EXPECT(check_group_invariants(T2,id));
-  EXPECT(check_group_invariants(T2,T1));
+  EXPECT(check_group_invariants(id,T1_tr2));
+  EXPECT(check_group_invariants(T2_tr2,id));
+  EXPECT(check_group_invariants(T2_tr2,T1_tr2));
 
   EXPECT(check_manifold_invariants(id,id));
-  EXPECT(check_manifold_invariants(id,T1));
-  EXPECT(check_manifold_invariants(T2,id));
-  EXPECT(check_manifold_invariants(T2,T1));
+  EXPECT(check_manifold_invariants(id,T1_tr2));
+  EXPECT(check_manifold_invariants(T2_tr2,id));
+  EXPECT(check_manifold_invariants(T2_tr2,T1_tr2));
 
 }
 
@@ -180,9 +181,9 @@ TEST(Rot2 , LieGroupDerivatives) {
   Rot2 id;
 
   CHECK_LIE_GROUP_DERIVATIVES(id,id);
-  CHECK_LIE_GROUP_DERIVATIVES(id,T2);
-  CHECK_LIE_GROUP_DERIVATIVES(T2,id);
-  CHECK_LIE_GROUP_DERIVATIVES(T2,T1);
+  CHECK_LIE_GROUP_DERIVATIVES(id,T2_tr2);
+  CHECK_LIE_GROUP_DERIVATIVES(T2_tr2,id);
+  CHECK_LIE_GROUP_DERIVATIVES(T2_tr2,T1_tr2);
 
 }
 
@@ -191,9 +192,9 @@ TEST(Rot2 , ChartDerivatives) {
   Rot2 id;
 
   CHECK_CHART_DERIVATIVES(id,id);
-  CHECK_CHART_DERIVATIVES(id,T2);
-  CHECK_CHART_DERIVATIVES(T2,id);
-  CHECK_CHART_DERIVATIVES(T2,T1);
+  CHECK_CHART_DERIVATIVES(id,T2_tr2);
+  CHECK_CHART_DERIVATIVES(T2_tr2,id);
+  CHECK_CHART_DERIVATIVES(T2_tr2,T1_tr2);
 }
 
 /* ************************************************************************* */

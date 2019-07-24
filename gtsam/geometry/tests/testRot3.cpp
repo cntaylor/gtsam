@@ -602,24 +602,25 @@ TEST( Rot3, slerp)
 }
 
 //******************************************************************************
-Rot3 T1(Rot3::AxisAngle(Vector3(0, 0, 1), 1));
-Rot3 T2(Rot3::AxisAngle(Vector3(0, 1, 0), 2));
+//_tr3 = testRot3
+Rot3 T1_tr3(Rot3::AxisAngle(Vector3(0, 0, 1), 1));
+Rot3 T2_tr3(Rot3::AxisAngle(Vector3(0, 1, 0), 2));
 
 //******************************************************************************
 TEST(Rot3 , Invariants) {
   Rot3 id;
 
   EXPECT(check_group_invariants(id,id));
-  EXPECT(check_group_invariants(id,T1));
-  EXPECT(check_group_invariants(T2,id));
-  EXPECT(check_group_invariants(T2,T1));
-  EXPECT(check_group_invariants(T1,T2));
+  EXPECT(check_group_invariants(id,T1_tr3));
+  EXPECT(check_group_invariants(T2_tr3,id));
+  EXPECT(check_group_invariants(T2_tr3,T1_tr3));
+  EXPECT(check_group_invariants(T1_tr3,T2_tr3));
 
   EXPECT(check_manifold_invariants(id,id));
-  EXPECT(check_manifold_invariants(id,T1));
-  EXPECT(check_manifold_invariants(T2,id));
-  EXPECT(check_manifold_invariants(T2,T1));
-  EXPECT(check_manifold_invariants(T1,T2));
+  EXPECT(check_manifold_invariants(id,T1_tr3));
+  EXPECT(check_manifold_invariants(T2_tr3,id));
+  EXPECT(check_manifold_invariants(T2_tr3,T1_tr3));
+  EXPECT(check_manifold_invariants(T1_tr3,T2_tr3));
 }
 
 //******************************************************************************
@@ -627,10 +628,10 @@ TEST(Rot3 , LieGroupDerivatives) {
   Rot3 id;
 
   CHECK_LIE_GROUP_DERIVATIVES(id,id);
-  CHECK_LIE_GROUP_DERIVATIVES(id,T2);
-  CHECK_LIE_GROUP_DERIVATIVES(T2,id);
-  CHECK_LIE_GROUP_DERIVATIVES(T1,T2);
-  CHECK_LIE_GROUP_DERIVATIVES(T2,T1);
+  CHECK_LIE_GROUP_DERIVATIVES(id,T2_tr3);
+  CHECK_LIE_GROUP_DERIVATIVES(T2_tr3,id);
+  CHECK_LIE_GROUP_DERIVATIVES(T1_tr3,T2_tr3);
+  CHECK_LIE_GROUP_DERIVATIVES(T2_tr3,T1_tr3);
 }
 
 //******************************************************************************
@@ -638,10 +639,10 @@ TEST(Rot3 , ChartDerivatives) {
   Rot3 id;
   if (ROT3_DEFAULT_COORDINATES_MODE == Rot3::EXPMAP) {
     CHECK_CHART_DERIVATIVES(id,id);
-    CHECK_CHART_DERIVATIVES(id,T2);
-    CHECK_CHART_DERIVATIVES(T2,id);
-    CHECK_CHART_DERIVATIVES(T1,T2);
-    CHECK_CHART_DERIVATIVES(T2,T1);
+    CHECK_CHART_DERIVATIVES(id,T2_tr3);
+    CHECK_CHART_DERIVATIVES(T2_tr3,id);
+    CHECK_CHART_DERIVATIVES(T1_tr3,T2_tr3);
+    CHECK_CHART_DERIVATIVES(T2_tr3,T1_tr3);
   }
 }
 
