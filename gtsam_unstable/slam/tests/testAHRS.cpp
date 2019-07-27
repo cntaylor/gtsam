@@ -5,7 +5,7 @@
  * @author Chris Beall
  */
 
-#include "../AHRS.h"
+#include <gtsam_unstable/slam/AHRS.h>
 #include <gtsam/geometry/Rot3.h>
 #include <gtsam/base/Vector.h>
 #include <gtsam/base/Testable.h>

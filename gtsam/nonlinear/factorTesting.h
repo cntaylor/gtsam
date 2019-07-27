@@ -34,7 +34,7 @@ namespace gtsam {
  * This is fixable but expensive, and does not matter in practice as most factors will sit near
  * zero errors anyway. However, it means that below will only be exact for the correct measurement.
  */
-JacobianFactor linearizeNumerically(const NoiseModelFactor& factor,
+inline JacobianFactor linearizeNumerically(const NoiseModelFactor& factor,
     const Values& values, double delta = 1e-5) {
 
   // We will fill a vector of key/Jacobians pairs (a map would sort)
@@ -72,7 +72,7 @@ JacobianFactor linearizeNumerically(const NoiseModelFactor& factor,
 
 namespace internal {
 // CPPUnitLite-style test for linearization of a factor
-bool testFactorJacobians(const std::string& name_,
+inline bool testFactorJacobians(const std::string& name_,
     const NoiseModelFactor& factor, const gtsam::Values& values, double delta,
     double tolerance) {
 
