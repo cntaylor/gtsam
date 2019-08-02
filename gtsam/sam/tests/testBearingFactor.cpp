@@ -29,6 +29,7 @@
 using namespace std;
 using namespace gtsam;
 
+// _tbf = testBearingFactor ... prevent multiple defined when SINGLE_EXE is enabled
 Key poseKey_tbf(1);
 Key pointKey_tbf(2);
 

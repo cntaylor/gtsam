@@ -29,6 +29,7 @@
 using namespace std;
 using namespace gtsam;
 
+// _tbrf = testBearingRangeFactor.  For testing when SINGLE_EXE is enabled
 Key poseKey_tbrf(1);
 Key pointKey_tbrf(2);
 
