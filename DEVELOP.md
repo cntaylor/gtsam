@@ -17,3 +17,4 @@ class GTSAM_EXPORT MyClass { ... };
 
 GTSAM_EXPORT myFunction();
 ```
+For more details, see the file [Using-GTSAM-EXPORT.md](Using-GTSAM-EXPORT.md)

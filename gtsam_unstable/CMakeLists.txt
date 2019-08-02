@@ -91,10 +91,11 @@ if(WIN32) # Add 'lib' prefix to static library to avoid filename collision with 
 			PREFIX "lib"
 			COMPILE_DEFINITIONS GTSAM_UNSTABLE_IMPORT_STATIC)
     else()
+        #Will cause MS compilers to put the dll in the CMAKE binary dir.
 		set_target_properties(gtsam_unstable PROPERTIES
 			PREFIX ""
 			DEFINE_SYMBOL GTSAM_UNSTABLE_EXPORTS
-			RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+			RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 	endif()
 endif()
 
