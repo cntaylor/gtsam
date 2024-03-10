@@ -313,6 +313,13 @@ virtual class GPSFactor2 : gtsam::NonlinearFactor {
   gtsam::Point3 measurementIn() const;
 };
 
+#include <gtsam/navigation/PseudoRangeFactor.h>
+virtual class PseudoRangeFactor : gtsam::NonlinearFactor {
+  PseudoRangeFactor(size_t key, const double prange_in,
+                    const gtsam::Vector3& sat_loc_in, 
+                    const gtsam::noiseModel::Base* model);
+};
+
 #include <gtsam/navigation/Scenario.h>
 virtual class Scenario {
   gtsam::Pose3 pose(double t) const;
