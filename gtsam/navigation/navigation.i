@@ -315,7 +315,7 @@ virtual class GPSFactor2 : gtsam::NonlinearFactor {
 
 #include <gtsam/navigation/PseudoRangeFactor.h>
 virtual class PseudoRangeFactor : gtsam::NonlinearFactor {
-  PseudoRangeFactor(size_t key, const double prange_in,
+  PseudoRangeFactor(size_t key, const double& prange_in,
                     const gtsam::Vector3& sat_loc_in, 
                     const gtsam::noiseModel::Base* model);
 };

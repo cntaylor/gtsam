@@ -14,11 +14,11 @@ namespace gtsam {
 just assume the values are a vector5, where the first 3 are the ECEF location
 and the fourth is the clock error */
 
-class PseudoRangeFactor : public NoiseModelFactor1<Vector5> {
+class GTSAM_EXPORT PseudoRangeFactor : public NoiseModelFactor1<Vector5> {
   private:
     typedef NoiseModelFactor1<Vector5> Base;
     Vector3 sat_pos_ = Vector3::Zero();
-    double prange_meas_ = 0;
+    double prange_meas_ = 0.;
 
   public:
     PseudoRangeFactor(Key key, const double& prange_meas,

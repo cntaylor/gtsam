@@ -19,12 +19,12 @@ namespace gtsam {
 
 Vector PseudoRangeFactor::evaluateError(const Vector5& p, 
                                         OptionalMatrixType H) const {
-    Matrix<1,3> diff_loc = p.head<3>() - sat_pos_;
-    double prange_error = diff_loc.norm() + p[3]*prange.c_small - prange_meas_;
+    Vector3 diff_loc = p.head<3>() - sat_pos_;
+    double prange_error = diff_loc.norm() + p[3]*prange::c_small - prange_meas_;
     auto normed_diff = diff_loc/diff_loc.norm();
 
-    if (H) (*H) = (Matrix<1,5> << normed_diff, prange.c_small).finished();
-    return Vector1 << prange_error;
+    if (H) (*H) = (Matrix(1, 5) << normed_diff, prange::c_small, 0.0).finished();
+    return (Vector(1) << prange_error).finished();
 }
 
 } //namespace gtsam
