@@ -22,9 +22,19 @@ Vector PseudoRangeFactor::evaluateError(const Vector5& p,
     Vector3 diff_loc = p.head<3>() - sat_pos_;
     double prange_error = diff_loc.norm() + p[3]*prange::c_small - prange_meas_;
     auto normed_diff = diff_loc/diff_loc.norm();
+    Vector1 err;
+    err[0] = prange_error;
 
-    if (H) (*H) = (Matrix(1, 5) << normed_diff, prange::c_small, 0.0).finished();
-    return (Vector(1) << prange_error).finished();
+    if (H) {
+        Matrix tmp(1, 5);
+        for (int i=0; i<3; i++) 
+            tmp(0,i) = normed_diff[i];
+        tmp(0,3) = prange::c_small;
+        tmp(0,4) = 0.0;
+        // std::cout << "tmp created successfully" << std::endl;
+        (*H) = tmp;
+    }
+    return err;
 }
 
 } //namespace gtsam
