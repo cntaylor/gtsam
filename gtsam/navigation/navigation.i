@@ -320,6 +320,27 @@ virtual class PseudoRangeFactor : gtsam::NonlinearFactor {
                     const gtsam::noiseModel::Base* model);
 };
 
+virtual class sc_PseudoRangeFactor : gtsam::NonlinearFactor {
+  sc_PseudoRangeFactor(size_t pos_key, size_t sc_key, 
+                      const double& prange_meas,
+                      const gtsam::Vector3& sat_pos, 
+                      const gtsam::noiseModel::Base* model);
+};
+
+virtual class ClockErrorFactor : gtsam::NonlinearFactor {
+
+  ClockErrorFactor(size_t vec1, size_t vec2, 
+                  const double& delta_t,
+                  const gtsam::noiseModel::Base* model);
+};
+
+virtual class BetweenVector5Factor : gtsam::NonlinearFactor {
+
+  BetweenVector5Factor(size_t vec1, size_t vec2, 
+                  const double& delta_t,
+                  const gtsam::noiseModel::Base* model);
+};
+
 #include <gtsam/navigation/Scenario.h>
 virtual class Scenario {
   gtsam::Pose3 pose(double t) const;
